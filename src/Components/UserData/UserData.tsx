@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../App/hooks";
-import { setError, setIsLoading } from "../../redux-slices/globalSlice";
+import { setError, setIsLoading, setNotification } from "../../redux-slices/globalSlice";
 import { setAllUsers, setUserToDelete, taskUserState, TaskUserType } from "../../redux-slices/taskUserSlice";
 import { deleteUser, getAllUsers } from "../../services/taskUsersService";
 import { AxiosError } from "axios";
@@ -26,6 +26,10 @@ export const UserData = () => {
 
             if (resultStatus && (resultStatus >= 200 || resultStatus <= 300)) {
                 dispatch(setUserToDelete(userId));
+                dispatch(setNotification("User deleted successfully!"));
+                if (userData.userList.length) {
+                    setCurrentPage(1);
+                }
                 return;
             }
         } catch (error: unknown) {
