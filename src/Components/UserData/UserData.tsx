@@ -106,8 +106,9 @@ export const UserData = () => {
             </button>
             {!showForm ? (
                 <div className={styles["users-list-container"]}>
-                    {!!currentUsers.length && (
+                    {!!userData.userList.length && (
                         <input
+                            className={styles["search-bar"]}
                             type="text"
                             name="name"
                             onChange={(e) => handleSearchInput(e)}
