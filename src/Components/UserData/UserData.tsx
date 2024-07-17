@@ -93,7 +93,6 @@ export const UserData = () => {
         return usersToDisplay.slice(indexOfFirstUser, indexOfLastUser);
     }, [usersToDisplay, indexOfFirstUser, indexOfLastUser]);
 
-
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     return (
@@ -103,13 +102,15 @@ export const UserData = () => {
             </button>
             {!showForm ? (
                 <div className={styles["users-list-container"]}>
-                    <input
-                        type="text"
-                        name="name"
-                        onChange={(e) => handleSearchInput(e)}
-                        value={searchValue}
-                        placeholder="Search by name"
-                    />
+                    {!!currentUsers.length && (
+                        <input
+                            type="text"
+                            name="name"
+                            onChange={(e) => handleSearchInput(e)}
+                            value={searchValue}
+                            placeholder="Search by name"
+                        />
+                    )}
                     <UsersList users={currentUsers} handleDeleteUser={handleDeleteUser} />
                     <div className={styles["pagination"]}>
                         {Array.from({ length: totalPages }, (_, number) => (
