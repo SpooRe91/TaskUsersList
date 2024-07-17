@@ -1,0 +1,53 @@
+.user-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    width: 350px;
+
+    .user-info {
+        margin-bottom: 1rem;
+
+        .user-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .user-email,
+        .user-phone {
+            font-size: 1rem;
+        }
+    }
+
+    .buttons-container {
+        display: flex;
+        gap: 0.5rem;
+        flex-direction: column;
+        p {
+            text-align: center;
+            color: #ff1744;
+        }
+        .delete-button {
+            background-color: #ff1744;
+            color: #ffffff;
+            &:hover {
+                background-color: #d50000;
+            }
+        }
+        .yes-button {
+            background-color: #3ba720;
+            color: #000000;
+            &:hover {
+                background-color: #42c023;
+            }
+        }
+        .no-button {
+            background-color: #86404e;
+            color: #ffffff;
+            &:hover {
+                background-color: #d50000;
+            }
+        }
+    }
+}

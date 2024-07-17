@@ -1,0 +1,83 @@
+.form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #2d2d2d;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin: auto;
+
+    .confirmation-container {
+        p {
+            color: #4caf50;
+            font-weight: bolder;
+        }
+        button {
+            color: #fff;
+            border-radius: 8px;
+            &:hover {
+                color: #fff;
+                background-color: #555;
+            }
+        }
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .formGroup {
+        margin-bottom: 16px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"] {
+        width: calc(100% - 16px);
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #555;
+        background-color: #444;
+        color: #fff;
+        border-radius: 4px;
+        transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="password"]:focus {
+        outline: none;
+        border-color: #68a4e8;
+    }
+
+    .submitButton {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #68a4e8;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submitButton:hover {
+        background-color: #448bc6;
+    }
+
+    .successMessage {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
