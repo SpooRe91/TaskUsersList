@@ -1,4 +1,4 @@
-# User Management System
+# User List Task
 
 This project is a User Management System built with React, Redux, Redux-toolkit, Material Ui, Axios. It allows you to view, add, delete, and search for users.
 
