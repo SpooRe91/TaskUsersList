@@ -12,7 +12,7 @@ type UserData = {
 };
 
 export const AddUserForm = () => {
-    const [values, setValues] = useState<UserData>({ name: "", email: "", phone: '' });
+    const [values, setValues] = useState<UserData>({ name: "", email: "", phone: "" });
     const [successfulSubmit, setSuccessfulSubmit] = useState<boolean>(false);
     const dispatch = useAppDispatch();
 
@@ -39,7 +39,7 @@ export const AddUserForm = () => {
         } catch (error) {
             dispatch(setError(error as string));
         } finally {
-            setValues({ name: "", email: "", phone: 0 });
+            setValues({ name: "", email: "", phone: "" });
             dispatch(setIsLoading(false));
         }
     };
@@ -77,11 +77,13 @@ export const AddUserForm = () => {
             <div className={styles["formGroup"]}>
                 <label htmlFor="phone">Phone</label>
                 <input
-                    type="text"
+                    type="tel"
                     id="phone"
                     name="phone"
                     pattern="[0-9]{10}"
-                    placeholder="Enter 10-digit phone number"
+                    title="format: 1234567890"
+                    placeholder="Enter 10-digit number"
+                    maxLength={10}
                     value={values.phone}
                     onChange={(e) => handleOnChange(e)}
                     required

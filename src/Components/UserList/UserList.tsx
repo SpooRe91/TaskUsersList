@@ -10,7 +10,7 @@ type UsersListProps = {
 
 export const UsersList = ({ users, handleDeleteUser }: UsersListProps) => {
     if (users.length === 0) {
-        return <Typography variant="h6">No users found.</Typography>;
+        return <Typography variant="h6">No users to display!</Typography>;
     }
 
     return (

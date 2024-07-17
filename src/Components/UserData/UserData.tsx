@@ -86,12 +86,13 @@ export const UserData = () => {
     const indexOfLastUser = currentPage * USERS_PER_PAGE;
     const indexOfFirstUser = indexOfLastUser - USERS_PER_PAGE;
     const usersToDisplay = searchValue.trim() === "" ? userData.userList : filteredUsers;
+    const totalUsers = searchValue.trim() === "" ? userData.userList.length : filteredUsers.length;
+    const totalPages = Math.ceil(totalUsers / USERS_PER_PAGE);
+
     const currentUsers = useMemo(() => {
         return usersToDisplay.slice(indexOfFirstUser, indexOfLastUser);
     }, [usersToDisplay, indexOfFirstUser, indexOfLastUser]);
 
-    const totalUsers = searchValue.trim() === "" ? userData.userList.length : filteredUsers.length;
-    const totalPages = Math.ceil(totalUsers / USERS_PER_PAGE);
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
@@ -123,7 +124,7 @@ export const UserData = () => {
                     </div>
                 </div>
             ) : (
-                <Dialog className={styles["form-dialog"]} open={showForm}>
+                <Dialog open={showForm}>
                     <AddUserForm />
                     <button onClick={() => handleCloseForm()}>Close</button>
                 </Dialog>
