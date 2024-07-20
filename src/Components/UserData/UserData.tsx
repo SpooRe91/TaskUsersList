@@ -19,6 +19,29 @@ export const UserData = () => {
     const [searchValue, setSearchValue] = useState<string>("");
     const [filteredUsers, setFilteredUsers] = useState<TaskUserType[]>([]);
 
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                dispatch(setIsLoading(true));
+                const data = await getAllUsers();
+                if (data && typeof data !== "string") {
+                    dispatch(setAllUsers(data));
+                    return;
+                }
+            } catch (error) {
+                console.error("Failed to fetch users data", error);
+                if (!(error instanceof AxiosError)) {
+                    dispatch(setError("An unexpected arror occured. Please try again later"));
+                    return;
+                }
+                return dispatch(setError(error.message));
+            } finally {
+                dispatch(setIsLoading(false));
+            }
+        };
+        fetchUsers();
+    }, [dispatch]);
+
     const handleDeleteUser = async (userId: string) => {
         try {
             dispatch(setIsLoading(true));
@@ -64,38 +87,15 @@ export const UserData = () => {
         setCurrentPage(1);
     };
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                dispatch(setIsLoading(true));
-                const data = await getAllUsers();
-                if (data && typeof data !== "string") {
-                    dispatch(setAllUsers(data));
-                    return;
-                }
-            } catch (error) {
-                console.error("Failed to fetch users data", error);
-                if (!(error instanceof AxiosError)) {
-                    dispatch(setError("An unexpected arror occured. Please try again later"));
-                    return;
-                }
-                return dispatch(setError(error.message));
-            } finally {
-                dispatch(setIsLoading(false));
-            }
-        };
-        fetchUsers();
-    }, [dispatch, userData.userList.length]);
-
-    const indexOfLastUser = currentPage * USERS_PER_PAGE;
-    const indexOfFirstUser = indexOfLastUser - USERS_PER_PAGE;
-    const usersToDisplay = searchValue.trim() === "" ? userData.userList : filteredUsers;
     const totalUsers = searchValue.trim() === "" ? userData.userList.length : filteredUsers.length;
     const totalPages = Math.ceil(totalUsers / USERS_PER_PAGE);
 
     const currentUsers = useMemo(() => {
+        const indexOfLastUser = currentPage * USERS_PER_PAGE;
+        const indexOfFirstUser = indexOfLastUser - USERS_PER_PAGE;
+        const usersToDisplay = searchValue.trim() === "" ? userData.userList : filteredUsers;
         return usersToDisplay.slice(indexOfFirstUser, indexOfLastUser);
-    }, [usersToDisplay, indexOfFirstUser, indexOfLastUser]);
+    }, [currentPage, searchValue, userData.userList, filteredUsers]);
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 

@@ -1,6 +1,5 @@
 import type { RootState } from "../App/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAction } from "../types";
 
 type GlobalDataType = {
     isLoading: boolean;
@@ -18,10 +17,10 @@ export const globalActions = createSlice({
     name: "globalSlice",
     initialState,
     reducers: {
-        setIsLoading: (state: GlobalDataType, action: IAction<string, boolean>) => {
+        setIsLoading: (state: GlobalDataType, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload;
         },
-        setError: (state: GlobalDataType, action: IAction<string, string>) => {
+        setError: (state: GlobalDataType, action: PayloadAction<string>) => {
             state.errorMessage = action.payload;
         },
         setNotification: (state: GlobalDataType, action: PayloadAction<string>) => {
