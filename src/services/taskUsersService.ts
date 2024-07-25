@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 
-const API_URL = "https://mb-cook-server.vercel.app/taskUsers";
+const API_URL = "https://mb-multi-tool-api.vercel.app/taskUsers";
 
 type User = {
     _id: string;
